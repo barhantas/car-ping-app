@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import {
   StyleSheet,
@@ -12,7 +12,10 @@ import {
   Button
 } from "react-native";
 
-import { sendVerificationCode } from "../../actions/member"
+import {
+  sendVerificationCode,
+  verifyVerificationCode
+} from "../../actions/member";
 
 import firebase from "react-native-firebase";
 
@@ -45,20 +48,12 @@ class About extends React.Component {
 
   handleSendCodeButton = () => {
     const { phoneNumber } = this.state;
-     this.props.sendVerificationCode("+905058148912")
-
+    this.props.sendVerificationCode("+905058148912");
   };
 
   handleSubmit = () => {
     const { smsVerificationCode, confirmResult } = this.state;
-    confirmResult
-      .confirm(smsVerificationCode)
-      .then(user =>
-        this.setState({
-          user: user
-        })
-      )
-      .catch(error => console.log(error));
+    this.props.verifyVerificationCode("123456");
   };
 
   render() {
@@ -164,12 +159,19 @@ class About extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  sendVerificationCode: (phoneNumber) => dispatch(sendVerificationCode(phoneNumber)),
-})
+const mapStateToProps= (state)=>(console.log(state))
 
-export default connect(null,mapDispatchToProps)(About);
+const mapDispatchToProps = dispatch => ({
+  sendVerificationCode: phoneNumber =>
+    dispatch(sendVerificationCode(phoneNumber)),
+  verifyVerificationCode: verificationCode =>
+    dispatch(verifyVerificationCode(verificationCode))
+});
 
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(About);
 
 const styles = StyleSheet.create({
   container: {
@@ -208,4 +210,3 @@ const styles = StyleSheet.create({
     textAlign: "center"
   }
 });
-

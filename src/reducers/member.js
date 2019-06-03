@@ -1,6 +1,7 @@
 export default function userReducer(
   state = {
     verificationCodeSending: false,
+    verificationCodeVerifying: false,
     confirmResult: {},
     userData: {}
   },
@@ -23,7 +24,16 @@ export default function userReducer(
       };
     }
     case "VERIFY_VERIFICATION_CODE": {
-      return { ...state };
+      console.log(action);
+      return { ...state, verificationCodeVerifying: true };
+    }
+    case "VERIFICATION_CODE_VERIFIED": {
+      console.log(action);
+      return {
+        ...state,
+        verificationCodeVerifying: false,
+        userData: action.userData
+      };
     }
     default:
       return state;
