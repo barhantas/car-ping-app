@@ -11,7 +11,7 @@ import memberService from "../services/memberService";
 
 
 
-const reduxPersistConfig = { key: "root", storage, blacklist: [] };
+const reduxPersistConfig = { key: "root", storage, blacklist: ['member'] };
 
 const reducer = persistCombineReducers(reduxPersistConfig, reducers);
 

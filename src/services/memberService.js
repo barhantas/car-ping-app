@@ -5,6 +5,7 @@ import {
 } from "../actions/member";
 import firebase from "react-native-firebase";
 
+
 export function* loadSendVerificationCode({ phoneNumber }) {
   const confirmResult = yield call(() =>
     firebase

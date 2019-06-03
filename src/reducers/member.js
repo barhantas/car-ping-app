@@ -24,11 +24,9 @@ export default function userReducer(
       };
     }
     case "VERIFY_VERIFICATION_CODE": {
-      console.log(action);
       return { ...state, verificationCodeVerifying: true };
     }
     case "VERIFICATION_CODE_VERIFIED": {
-      console.log(action);
       return {
         ...state,
         verificationCodeVerifying: false,
