@@ -4,7 +4,7 @@ import {
   verifyVerificationCodeLoaded
 } from "../actions/member";
 import firebase from "react-native-firebase";
-
+import { Actions } from "react-native-router-flux";
 
 export function* loadSendVerificationCode({ phoneNumber }) {
   const confirmResult = yield call(() =>
@@ -22,7 +22,10 @@ export function* loadVerifyVerificationCode({ verificationCode }) {
   const userData = yield call(() =>
     confirmResult
       .confirm(verificationCode)
-      .then(userData => userData)
+      .then(userData => {
+        userData.phoneNumber && Actions.home();
+        return userData;
+      })
       .catch(err => console.log(err))
   );
   yield put(verifyVerificationCodeLoaded(userData));

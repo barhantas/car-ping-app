@@ -26,7 +26,7 @@ import ProfileComponent from "../components/User/Profile";
 
 import AboutComponent from "../components/About";
 import Login from "../components/Login";
-import Verify from "../components/Verify";
+import Home from "../components/Home";
 
 const Index = (
   <Stack hideNavBar>
@@ -40,12 +40,12 @@ const Index = (
         <Scene key="login" component={Login} />
       </Stack>
       <Stack
-        key="verify"
+        key="home"
         title={AppConfig.appName.toUpperCase()}
         // icon={() => <Icon name="planet" {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
       >
-        <Scene key="verify" component={Verify} />
+        <Scene key="home" component={Home} />
       </Stack>
       {/* <Tabs
         key="tabbar"
