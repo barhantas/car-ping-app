@@ -66,8 +66,8 @@ class Login extends React.Component {
               <Text
                 style={{ color: "white", fontSize: 30, textAlign: "center" }}
               >
-                {confirmResult
-                  ? "Plese write the sms verification code."
+                {confirmResult._verificationId
+                  ? "Please write the sms verification code."
                   : "We should verify you with sms for login."}
               </Text>
             </Row>

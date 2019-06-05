@@ -1,6 +1,6 @@
 {
-  "name": "RNFirebaseStarter",
-  "version": "5.4.0",
+  "name": "carping",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "android-bundle": "mkdir -p android/app/src/main/assets && react-native bundle --platform android --dev true --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/",
@@ -12,17 +12,20 @@
     "test": "jest"
   },
   "dependencies": {
+    "appcenter": "2.0.0",
+    "appcenter-analytics": "2.0.0",
+    "appcenter-crashes": "2.0.0",
+    "native-base": "^2.12.1",
+    "prop-types": "^15.7.2",
     "react": "16.8.3",
     "react-native": "0.59.3",
     "react-native-firebase": "^5.4.0",
+    "react-native-router-flux": "4.0.6",
+    "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "redux-persist": "^5.10.0",
-    "redux-thunk": "^2.3.0",
-    "react-redux": "^6.0.0",
-    "prop-types": "^15.7.2",
-    "react-native-router-flux": "4.0.6",
-    "native-base": "^2.12.1",
-    "redux-saga": "^0.16.0"
+    "redux-saga": "^0.16.0",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
