@@ -16,19 +16,21 @@ import {
 import verificationCodeIcon from "../../../assets/sms-verification-image.png";
 import sendIcon from "../../../assets/send-icon.png";
 import successIcon from "../../../assets/success.png";
+import refreshIcon from "../../../assets/refresh-icon.png";
 
 class Login extends React.Component {
   state = {
     phoneNumber: null,
-    smsVerificationCode: null
+    smsVerificationCode: null,
+    isVerificationCodeSend: false
   };
 
   handleChange = (name, val) => this.setState({ [name]: val });
 
   SendVerificationCode = () => {
-    const { phoneNumber } = this.state;
-    this.props.sendVerificationCode(phoneNumber);
-    this.setState({ phoneNumber: null });
+    const { phoneNumber, isVerificationCodeSend } = this.state;
+    this.props.sendVerificationCode(phoneNumber || isVerificationCodeSend);
+    this.setState({ phoneNumber: null, isVerificationCodeSend: phoneNumber });
   };
 
   verifyVerificationCode = () => {
@@ -37,7 +39,11 @@ class Login extends React.Component {
   };
 
   render() {
-    const { phoneNumber, smsVerificationCode } = this.state;
+    const {
+      phoneNumber,
+      smsVerificationCode,
+      isVerificationCodeSend
+    } = this.state;
     const {
       confirmResult,
       userData,
@@ -70,6 +76,19 @@ class Login extends React.Component {
                   ? "Please write the sms verification code."
                   : "We should verify you with sms for login."}
               </Text>
+              {isVerificationCodeSend && (
+                <TouchableHighlight onPress={this.SendVerificationCode}>
+                  <Image
+                    source={refreshIcon}
+                    style={{
+                      display: "flex",
+                      alignSelf: "center",
+                      width: 40,
+                      height: 40
+                    }}
+                  />
+                </TouchableHighlight>
+              )}
             </Row>
             <Row
               style={{

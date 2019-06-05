@@ -20,7 +20,7 @@ export default function userReducer(
       return {
         ...state,
         verificationCodeSending: false,
-        confirmResult: action.confirmResult
+        confirmResult: action.confirmResult || {}
       };
     }
     case "VERIFY_VERIFICATION_CODE": {
@@ -30,7 +30,7 @@ export default function userReducer(
       return {
         ...state,
         verificationCodeVerifying: false,
-        userData: action.userData
+        userData: action.userData || {}
       };
     }
     default:

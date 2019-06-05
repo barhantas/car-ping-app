@@ -12,9 +12,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "appcenter": "2.0.0",
-    "appcenter-analytics": "2.0.0",
-    "appcenter-crashes": "2.0.0",
     "native-base": "^2.12.1",
     "prop-types": "^15.7.2",
     "react": "16.8.3",

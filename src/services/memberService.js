@@ -12,7 +12,11 @@ export function* loadSendVerificationCode({ phoneNumber }) {
       .auth()
       .signInWithPhoneNumber(phoneNumber)
       .then(confirmResult => confirmResult)
-      .catch(err => console.log(err))
+      .catch(err =>
+        alert(
+          `${err.userInfo.error_name}: ${err.userInfo.NSLocalizedDescription}`
+        )
+      )
   );
   yield put(sendVerificationCodeLoaded(confirmResult));
 }
@@ -23,10 +27,16 @@ export function* loadVerifyVerificationCode({ verificationCode }) {
     confirmResult
       .confirm(verificationCode)
       .then(userData => {
-        userData.phoneNumber && Actions.home();
+        setTimeout(() => {
+          userData.phoneNumber && Actions.home();
+        }, 1000);
         return userData;
       })
-      .catch(err => console.log(err))
+      .catch(err =>
+        alert(
+          `${err.userInfo.error_name}: ${err.userInfo.NSLocalizedDescription}`
+        )
+      )
   );
   yield put(verifyVerificationCodeLoaded(userData));
 }
