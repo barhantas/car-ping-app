@@ -2,13 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { Container, Text, Input } from "native-base";
-import { Image, View, TouchableHighlight, TouchableOpacity,Alert } from "react-native";
+import { Image, View, TouchableHighlight, Alert } from "react-native";
 import { Actions } from "react-native-router-flux";
 
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Loading from "../components/UI/Loading";
-
-import NotifyService from "../../../NotifyService";
 
 import {
   sendVerificationCode,
@@ -20,18 +18,6 @@ import sendIcon from "../../../assets/send-icon.png";
 import successIcon from "../../../assets/success.png";
 
 class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.notif = new NotifyService(
-      this.onNotif.bind(this)
-    );
-  }
-  
-  onNotif(notif) {
-    console.log(notif);
-    Alert.alert(notif.title, notif.message);
-  }
-
   state = {
     phoneNumber: null,
     smsVerificationCode: null
@@ -128,6 +114,7 @@ class Login extends React.Component {
                 }}
               >
                 <TouchableHighlight
+                  // onPress={()=>Actions.home()} //backdor :)
                   onPress={
                     phoneNumber
                       ? this.SendVerificationCode
@@ -145,47 +132,6 @@ class Login extends React.Component {
                     }}
                   />
                 </TouchableHighlight>
-
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                    this.notif.localNotif();
-                  }}
-                >
-                  <Text>Local Notification (now)</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                    this.notif.scheduleNotif();
-                  }}
-                >
-                  <Text>Schedule Notification in 30s</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                    this.notif.cancelNotif();
-                  }}
-                >
-                  <Text>Cancel last notification (if any)</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                    this.notif.cancelAll();
-                  }}
-                >
-                  <Text>Cancel all notifications</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                    this.notif.checkPermission(this.handlePerm.bind(this));
-                  }}
-                >
-                  <Text>Check Permission</Text>
-                </TouchableOpacity>
               </View>
             </Row>
           </Col>
